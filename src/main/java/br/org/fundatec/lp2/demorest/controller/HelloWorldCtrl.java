@@ -8,11 +8,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+@Controller // Instrui o spring a criar um controlador
 public class HelloWorldCtrl {
 
-    @RequestMapping(path = "/", method = RequestMethod.GET)
-    @ResponseBody
+    @RequestMapping(path = "/", method = RequestMethod.GET) // Mapeia uma Url para cair no metodo abaixo
+    @ResponseBody // o retorno do metodo vai ser serializado para o corpo da resposta http
     public String sayHello() {
         return "Hello World";
     }
@@ -43,7 +43,12 @@ public class HelloWorldCtrl {
         return pessoas;
     }
 
-    @RequestMapping(path = "/test", method = RequestMethod.GET)
+    /**
+     * Exemplo de retorno para arquivo html de template
+     * É necessário ter um template engine configurado. No arquivo pom.xml configuramos o thymeleaf como engine
+     * @return O nome do arquivo a ser carregado na pasta resources/templates
+     */
+    @RequestMapping(path = "/html", method = RequestMethod.GET)
     public String getTestHtml() {
         return "test";
     }
