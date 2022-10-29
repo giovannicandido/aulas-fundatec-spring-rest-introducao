@@ -1,9 +1,14 @@
 package br.org.fundatec.lp2.demorest.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 public class Pessoa {
+
+    private Long id;
     private String nome;
     private String sobrenome;
     private String cpf;
@@ -11,6 +16,14 @@ public class Pessoa {
 
     public String getNome() {
         return nome;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setNome(String nome) {
@@ -43,6 +56,9 @@ public class Pessoa {
 
 
     public long getIdade() {
+        if (this.dataNascimento == null) {
+            return 0;
+        }
         LocalDate now = LocalDate.now();
         long idade = ChronoUnit.YEARS.between(this.dataNascimento, now);
         return idade;
