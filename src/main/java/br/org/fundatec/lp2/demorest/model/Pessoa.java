@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 public class Pessoa {
+
+    private Long id;
     private String nome;
     private String sobrenome;
     private String cpf;
@@ -41,8 +43,18 @@ public class Pessoa {
         this.dataNascimento = dataNascimento;
     }
 
+    public Long getId() {
+        return id;
+    }
 
-    public long getIdade() {
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public long getIdade(LocalDate dataNascimento) {
+        if (this.dataNascimento == null) {
+            return 0;
+        }
         LocalDate now = LocalDate.now();
         long idade = ChronoUnit.YEARS.between(this.dataNascimento, now);
         return idade;
