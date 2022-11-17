@@ -1,6 +1,7 @@
 package br.org.fundatec.lp2.demorest.controller;
 
 import br.org.fundatec.lp2.demorest.model.Pessoa;
+import br.org.fundatec.lp2.demorest.repository.PessoaRepository;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -13,11 +14,11 @@ class PessoaCtrlTest {
     @Test
     @Disabled
     void procurarPeloId() {
-        PessoaCtrl pessoaCtrl = new PessoaCtrl();
+        PessoaRepository pessoaRepository = new PessoaRepository();
         Pessoa pessoa = new Pessoa();
         pessoa.setId(1L);
         pessoa.setNome("Giovanni");
-        pessoaCtrl.criarPessoa(pessoa);
+        pessoaRepository.create(pessoa);
 
 //        Optional<PessoaIndex> pessoaIndex = pessoaCtrl.procurarPorId(0L);
 //        assertThat(pessoaIndex).isEmpty();

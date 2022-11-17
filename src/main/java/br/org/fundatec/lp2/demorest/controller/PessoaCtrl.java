@@ -1,23 +1,21 @@
 package br.org.fundatec.lp2.demorest.controller;
 
 import br.org.fundatec.lp2.demorest.model.Pessoa;
-import br.org.fundatec.lp2.demorest.repository.PessoaRepository;
+import br.org.fundatec.lp2.demorest.service.PessoaService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Controller // Instrui o spring a criar um controlador
 @RequestMapping("/api/pessoa") // URL base para o controlador
 public class PessoaCtrl {
 
-    private final PessoaRepository pessoaRepository;
+    private final PessoaService pessoaService;
 
-    public PessoaCtrl() {
-        this.pessoaRepository = new PessoaRepository();
+    public PessoaCtrl(PessoaService pessoaService) {
+        this.pessoaService = pessoaService;
     }
 
     /**
@@ -28,7 +26,7 @@ public class PessoaCtrl {
     @RequestMapping(method = RequestMethod.GET) // Instrui o spring para cair nesse method nessa URL + Verbo
     @ResponseBody
     public List<Pessoa> buscaPessoas() {
-        return pessoaRepository.listAll();
+        return pessoaService.listAll();
     }
 
     /**
@@ -38,7 +36,7 @@ public class PessoaCtrl {
      */
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity criarPessoa(@RequestBody Pessoa pessoa) {
-        pessoaRepository.create(pessoa);
+        pessoaService.create(pessoa);
         return ResponseEntity.ok().build();
     }
 
@@ -51,9 +49,9 @@ public class PessoaCtrl {
     @ResponseBody
     public ResponseEntity deletetarPessoa(@PathVariable("id") Long id) {
 
-        Pessoa pessoa = pessoaRepository.findById(id);
+        Pessoa pessoa = pessoaService.findById(id);
         if(pessoa != null) {
-            pessoaRepository.deleteById(id);
+            pessoaService.deleteById(id);
             return ResponseEntity.ok().build();
         }else {
             return ResponseEntity.notFound().build();
@@ -70,9 +68,9 @@ public class PessoaCtrl {
     @ResponseBody
     public ResponseEntity editarPessoa(@PathVariable("id") Long id,
                                        @RequestBody Pessoa pessoa) {
-        Pessoa pessoaExiste = pessoaRepository.findById(id);
+        Pessoa pessoaExiste = pessoaService.findById(id);
         if(pessoaExiste != null) {
-            pessoaRepository.edit(id, pessoa);
+            pessoaService.edit(id, pessoa);
             return ResponseEntity.ok().build();
         }else {
             return ResponseEntity.notFound().build();
@@ -87,7 +85,7 @@ public class PessoaCtrl {
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity procurarPorId(@PathVariable("id") Long id) {
-        Pessoa pessoa = pessoaRepository.findById(id);
+        Pessoa pessoa = pessoaService.findById(id);
         if(pessoa != null) {
             return ResponseEntity.ok(pessoa);
         } else {

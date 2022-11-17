@@ -1,4 +1,4 @@
-package br.org.fundatec.lp2.demorest.controller;
+package br.org.fundatec.lp2.demorest.repository;
 
 import br.org.fundatec.lp2.demorest.model.Pessoa;
 

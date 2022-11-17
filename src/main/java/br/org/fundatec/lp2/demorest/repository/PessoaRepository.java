@@ -1,13 +1,13 @@
 package br.org.fundatec.lp2.demorest.repository;
 
-import br.org.fundatec.lp2.demorest.controller.PessoaIndex;
 import br.org.fundatec.lp2.demorest.model.Pessoa;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class PessoaRepository {
 
     // Nosso banco é uma lista simples em memória
