@@ -1,11 +1,16 @@
 package br.org.fundatec.lp2.demorest.model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
+@Entity
 public class Pessoa {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(length = 60, name = "nome")
     private String nome;
     private String sobrenome;
     private String cpf;

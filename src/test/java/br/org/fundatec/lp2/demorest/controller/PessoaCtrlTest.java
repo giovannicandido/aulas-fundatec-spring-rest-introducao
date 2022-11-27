@@ -2,10 +2,9 @@ package br.org.fundatec.lp2.demorest.controller;
 
 import br.org.fundatec.lp2.demorest.model.Pessoa;
 import br.org.fundatec.lp2.demorest.repository.PessoaRepository;
+import br.org.fundatec.lp2.demorest.repository.PessoaRepositoryImpl;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -14,7 +13,7 @@ class PessoaCtrlTest {
     @Test
     @Disabled
     void procurarPeloId() {
-        PessoaRepository pessoaRepository = new PessoaRepository();
+        PessoaRepository pessoaRepository = new PessoaRepositoryImpl();
         Pessoa pessoa = new Pessoa();
         pessoa.setId(1L);
         pessoa.setNome("Giovanni");

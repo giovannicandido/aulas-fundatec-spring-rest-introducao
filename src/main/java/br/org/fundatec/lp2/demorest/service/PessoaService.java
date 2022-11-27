@@ -23,7 +23,7 @@ public class PessoaService {
     }
 
     public Pessoa findById(Long id) {
-        return pessoaRepository.findById(id);
+        return pessoaRepository.findWithId(id);
     }
 
     public void edit(Long id, Pessoa pessoa) {
@@ -31,6 +31,6 @@ public class PessoaService {
     }
 
     public void deleteById(Long id) {
-        pessoaRepository.deleteById(id);
+        pessoaRepository.deleteWithId(id);
     }
 }
